@@ -11,12 +11,11 @@ var express          = require("express"),
     User             = require("./models/user"),
     commentRoutes    = require("./routes/comments"),
     campgroundRoutes = require("./routes/campgrounds"),
-    indexRoutes      = require("./routes/index");    
+    indexRoutes      = require("./routes/index"),  
+    url              = process.env.DATABASEURL || "mongodb://localhost/NL";
 
 //APP CONFIG
-mongoose.connect(process.env.DATABASEURL);
-//Development Database-"mongodb://localhost/NL"
-//Heroku Database-"mongodb://njn17845:njn17845@ds135382.mlab.com:35382/natures_list"
+mongoose.connect(url);
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
